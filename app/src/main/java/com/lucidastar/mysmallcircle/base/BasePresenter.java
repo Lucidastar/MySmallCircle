@@ -1,25 +1,47 @@
-/*
- * Copyright 2016, The Android Open Source Project
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.lucidastar.mysmallcircle.base;
 
-public interface BasePresenter {
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.OnLifecycleEvent;
 
-    void subscribe();
+import com.lucidastar.mysmallcircle.listener.NetConnectListener;
+import com.lucidastar.mysmallcircle.mvp.IModel;
+import com.lucidastar.mysmallcircle.mvp.IView;
 
-    void unSubscribe();
+import java.lang.ref.WeakReference;
+
+/**
+ * Created by qiuyouzone on 2019/1/16.
+ */
+
+public abstract class BasePresenter<M extends IModel, V extends IView> implements AbstractPresenter,NetConnectListener {
+    private WeakReference actReference;
+    protected V IView;
+    protected M IModel;
+
+    public M getIModel() {
+        IModel = loadModel(); //使用前先进行初始化
+        return IModel;
+    }
+
+    @Override
+    public void attachView(IView iView) {
+        actReference = new WeakReference(iView);
+    }
+
+    @Override
+    public void detachView() {
+        if (actReference != null) {
+            actReference.clear();
+            actReference = null;
+        }
+    }
+
+    @Override
+    public V getIView() {
+        return (V) actReference.get();
+    }
+
+    public abstract M loadModel();
+
 
 }
