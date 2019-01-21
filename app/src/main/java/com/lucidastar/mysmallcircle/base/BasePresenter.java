@@ -1,6 +1,8 @@
 package com.lucidastar.mysmallcircle.base;
 
 import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.LifecycleObserver;
+import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.OnLifecycleEvent;
 
 import com.lucidastar.mysmallcircle.listener.NetConnectListener;
@@ -9,39 +11,57 @@ import com.lucidastar.mysmallcircle.mvp.IView;
 
 import java.lang.ref.WeakReference;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 /**
  * Created by qiuyouzone on 2019/1/16.
  */
 
-public abstract class BasePresenter<M extends IModel, V extends IView> implements AbstractPresenter,NetConnectListener {
-    private WeakReference actReference;
-    protected V IView;
-    protected M IModel;
+public abstract class BasePresenter<M extends IModel, V extends IView> implements AbstractPresenter {
 
-    public M getIModel() {
-        IModel = loadModel(); //使用前先进行初始化
-        return IModel;
-    }
+    protected CompositeDisposable mCompositeDisposable;
+    protected M mModel;
+    protected V mRootView;
+
 
     @Override
-    public void attachView(IView iView) {
-        actReference = new WeakReference(iView);
+    public void attachView(IView view) {
+        if (mRootView != null && mRootView instanceof LifecycleOwner) {
+            ((LifecycleOwner) mRootView).getLifecycle().addObserver(this);
+            if (mModel!= null && mModel instanceof LifecycleObserver){
+                ((LifecycleOwner) mRootView).getLifecycle().addObserver((LifecycleObserver) mModel);
+            }
+        }
+        this.mRootView = (V) view;
     }
 
+
     @Override
-    public void detachView() {
-        if (actReference != null) {
-            actReference.clear();
-            actReference = null;
+    public IView getIView() {
+        return mRootView;
+    }
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy(LifecycleOwner owner) {
+        detachView();
+        owner.getLifecycle().removeObserver(this);
+    }
+
+    public void addDispose(Disposable disposable) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = new CompositeDisposable();
+        }
+        mCompositeDisposable.add(disposable);//将所有 Disposable 放入容器集中处理
+    }
+
+    /**
+     * 停止集合中正在执行的 RxJava 任务
+     */
+    public void unDispose() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable.clear();//保证 Activity 结束时取消所有正在执行的订阅
         }
     }
-
-    @Override
-    public V getIView() {
-        return (V) actReference.get();
-    }
-
-    public abstract M loadModel();
-
-
 }

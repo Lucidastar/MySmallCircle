@@ -17,4 +17,9 @@ public class LoginModel implements IModel {
         }
         return isLogin;
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

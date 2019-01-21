@@ -27,33 +27,16 @@ public class LoginPresenter extends BasePresenter<LoginModel,LoginContract.Login
         mAddTaskView.setPresenter(this);
     }
 
-    @Override
-    public void subscribe() {
 
-    }
-
-    @Override
-    public void unSubscribe() {
-
-    }
 
     @Override
     public void login(String name, String pwd) {
 
     }
 
-    @Override
-    public LoginModel loadModel() {
-        return new LoginModel();
-    }
 
     @Override
-    public void connectListener() {
-
-    }
-
-    @Override
-    public void disconnectListener() {
+    public void detachView() {
 
     }
 }

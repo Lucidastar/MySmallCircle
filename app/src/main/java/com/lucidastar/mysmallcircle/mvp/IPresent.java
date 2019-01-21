@@ -8,7 +8,4 @@ import android.arch.lifecycle.DefaultLifecycleObserver;
 
 public interface IPresent extends DefaultLifecycleObserver {
 
-    void subscribe();
-
-    void unSubscribe();
 }

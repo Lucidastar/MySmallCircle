@@ -108,6 +108,8 @@ dependencies {
     implementation rootProject.ext.dependencies["rxAndroidVersion"]
     implementation rootProject.ext.dependencies["retrofit2"]
 
+    implementation rootProject.ext.dependencies["guava"]
+
     implementation rootProject.ext.dependencies["lifecycle_runtime"]
     annotationProcessor rootProject.ext.dependencies["lifecycle_compiler"]
     // 如果用的是java8使用以下的依赖

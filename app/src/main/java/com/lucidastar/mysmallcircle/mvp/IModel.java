@@ -5,4 +5,5 @@ package com.lucidastar.mysmallcircle.mvp;
  */
 
 public interface IModel {
+    void destroy();
 }

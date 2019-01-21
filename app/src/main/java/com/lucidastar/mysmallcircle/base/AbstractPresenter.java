@@ -17,14 +17,10 @@
 package com.lucidastar.mysmallcircle.base;
 
 
-import android.arch.lifecycle.Lifecycle;
-import android.arch.lifecycle.OnLifecycleEvent;
-
-import com.lucidastar.mysmallcircle.listener.NetConnectListener;
 import com.lucidastar.mysmallcircle.mvp.IPresent;
 import com.lucidastar.mysmallcircle.mvp.IView;
 
-public interface AbstractPresenter<V extends IView> extends IPresent,NetConnectListener{
+public interface AbstractPresenter<V extends IView> extends IPresent{
 
     /**
      * @param view 绑定
@@ -39,12 +35,6 @@ public interface AbstractPresenter<V extends IView> extends IPresent,NetConnectL
      * @return 获取View
      */
     IView getIView();
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    void connectListener();
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    void disconnectListener();
 
 
 }

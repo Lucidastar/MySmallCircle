@@ -11,7 +11,7 @@ import com.lucidastar.mysmallcircle.mvp.IPresent;
 
 public interface LoginContract {
 
-        interface LoginView extends BaseView<AbstractPresenter> {
+        interface LoginView extends BaseView<BasePresenter> {
         String getUserName();
 
         String getPwd();
