@@ -110,14 +110,20 @@ dependencies {
 
     implementation rootProject.ext.dependencies["guava"]
 
-    implementation rootProject.ext.dependencies["lifecycle_runtime"]
-    annotationProcessor rootProject.ext.dependencies["lifecycle_compiler"]
+//    implementation rootProject.ext.dependencies["lifecycle_runtime"]
+//    annotationProcessor rootProject.ext.dependencies["lifecycle_compiler"]
     // 如果用的是java8使用以下的依赖
-    implementation rootProject.ext.dependencies["lifecycle_common_java8"]
+//    implementation rootProject.ext.dependencies["lifecycle_common_java8"]
 
 
     androidTestImplementation rootProject.ext.dependencies["espressoVersion"]
 
     implementation rootProject.ext.dependencies["umengAnalytics"]
     implementation rootProject.ext.dependencies["umengCommon"]
+    //dagger2
+    implementation rootProject.ext.dependencies["dagger2"]
+    annotationProcessor rootProject.ext.dependencies["dagger2_annotation"]
+
+    implementation rootProject.ext.dependencies["autodispose-android"]
+    implementation rootProject.ext.dependencies["autodispose-android-archcomponents"]
 }

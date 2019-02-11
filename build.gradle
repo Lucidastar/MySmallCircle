@@ -56,9 +56,13 @@ ext {
             "umengAnalytics"    : 'com.umeng.sdk:analytics:7.5.0',
             "umengCommon"    : 'com.umeng.sdk:common:1.5.0',
             "retrofit2"   : 'com.squareup.retrofit2:retrofit:2.5.0',
-            "lifecycle_runtime"   : 'android.arch.lifecycle:runtime:1.1.1',
-            "lifecycle_compiler"   : 'android.arch.lifecycle:compiler:1.1.1',
-            "lifecycle_common_java8"   : 'android.arch.lifecycle:common-java8:1.1.1'
+//            "lifecycle_runtime"   : 'android.arch.lifecycle:runtime:1.1.1',
+//            "lifecycle_compiler"   : 'android.arch.lifecycle:compiler:1.1.1',
+//            "lifecycle_common_java8"   : 'android.arch.lifecycle:common-java8:1.1.1',
+            "dagger2"   : 'com.google.dagger:dagger:2.21',
+            "dagger2_annotation"   : 'com.google.dagger:dagger-compiler:2.21',
+            "autodispose-android"   : 'com.uber.autodispose:autodispose-android:1.1.0',
+            "autodispose-android-archcomponents"   : 'com.uber.autodispose:autodispose-android-archcomponents:1.1.0'
     ]
 
 }

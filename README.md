@@ -5,3 +5,10 @@
 ②当当前页面关闭时停止请求  生命周期
 ③一个页面中用到多个presenter，要用到dagger2
 ④
+
+要用到的资源：https://github.com/Peakmain/gankzhihu/blob/master/app/src/main/java/com/peakmain/gankzhihu/net/RetrofitManager.java
+https://github.com/qingmei2/MVVM-Rhine
+https://github.com/uber/AutoDispose
+https://www.jianshu.com/p/4551529c615e
+https://www.jianshu.com/p/14ff79e9b4c0
+https://github.com/twangithub/TwanBase/tree/master/app/src/main/java/com/twan/base
