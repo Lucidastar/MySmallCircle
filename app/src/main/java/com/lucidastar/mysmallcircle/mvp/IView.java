@@ -1,21 +1,18 @@
 package com.lucidastar.mysmallcircle.mvp;
 
+import com.uber.autodispose.AutoDisposeConverter;
+
 /**
  * Created by qiuyouzone on 2019/1/16.
  */
 
 public interface IView {
     /**
-     * 显示加载
+     * 绑定Android生命周期 防止RxJava内存泄漏
+     *
+     * @param <T>
+     * @return
      */
-    default void showLoading() {
+    <T> AutoDisposeConverter<T> bindAutoDispose();
 
-    }
-
-    /**
-     * 隐藏加载
-     */
-    default void hideLoading() {
-
-    }
 }

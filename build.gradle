@@ -28,10 +28,10 @@ task clean(type: Delete) {
 
 ext {
     android = [
-            compileSdkVersion: 26,
+            compileSdkVersion: 28,
             buildToolsVersion: "27.0.0",
-            minSdkVersion    : 15,
-            targetSdkVersion : 26,
+            minSdkVersion    : 19,
+            targetSdkVersion : 28,
             versionCode      : 1,
             versionName      : "1.0"
     ]
@@ -62,7 +62,8 @@ ext {
             "dagger2"   : 'com.google.dagger:dagger:2.21',
             "dagger2_annotation"   : 'com.google.dagger:dagger-compiler:2.21',
             "autodispose-android"   : 'com.uber.autodispose:autodispose-android:1.1.0',
-            "autodispose-android-archcomponents"   : 'com.uber.autodispose:autodispose-android-archcomponents:1.1.0'
+            "autodispose-android-archcomponents"   : 'com.uber.autodispose:autodispose-android-archcomponents:1.1.0',
+            "externalLucidaUtils"   : 'com.lucidastar:lucidastarutils:1.0.0'
     ]
 
 }

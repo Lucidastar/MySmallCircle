@@ -6,7 +6,6 @@ import android.view.View;
 import com.lucidastar.mysmallcircle.R;
 import com.lucidastar.mysmallcircle.base.BaseActivity;
 import com.lucidastar.mysmallcircle.contract.LoginContract;
-import com.lucidastar.mysmallcircle.mvp.IPresent;
 
 public class LoginActivity extends BaseActivity{
 
@@ -28,8 +27,10 @@ public class LoginActivity extends BaseActivity{
     }
 
 
+
     @Override
-    public void setPresenter(IPresent presenter) {
+    public void onError(Throwable throwable) {
 
     }
+
 }

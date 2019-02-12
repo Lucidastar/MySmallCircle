@@ -12,3 +12,4 @@ https://github.com/uber/AutoDispose
 https://www.jianshu.com/p/4551529c615e
 https://www.jianshu.com/p/14ff79e9b4c0
 https://github.com/twangithub/TwanBase/tree/master/app/src/main/java/com/twan/base
+https://github.com/RookieExaminer/MvpDemo/blob/master/app/src/main/java/com/example/azheng/rxjavamvpdemo/base/BasePresenter.java
