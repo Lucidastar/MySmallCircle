@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+
 Properties prop = new Properties()
 prop.load(new FileInputStream(file("../signing.properties")))
 
@@ -128,9 +129,15 @@ dependencies {
     implementation rootProject.ext.dependencies["autodispose-android-archcomponents"]
 
     implementation rootProject.ext.dependencies["externalLucidaUtils"]
+    implementation rootProject.ext.dependencies["butterknife"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 //    implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+
+
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 }
