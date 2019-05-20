@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.tv_test)
-    private void test(){
+    public void test(){
         mTvTest.setOnClickListener(new DebouncingOnClickListener() {
             @Override
             public void doClick(View v) {

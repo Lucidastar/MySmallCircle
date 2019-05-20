@@ -22,7 +22,7 @@ android {
 
     signingConfigs {
         release {
-            keyAlias prop['KEY_ALIAS']
+          keyAlias prop['KEY_ALIAS']
             keyPassword prop['KEY_PASSWORD']
             storeFile file(prop['STORE_FILE'])
             storePassword prop['STORE_PASSWORD']
@@ -56,13 +56,19 @@ android {
                 shrinkResources true
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
-                signingConfig signingConfigs.release
+//                signingConfig signingConfigs.release
 
-                applicationVariants.all { variant ->
-                    variant.outputs.all { output ->
+               applicationVariants.all { variant ->
+                   variant.getPackageApplicationProvider().get().outputDirectory = new File(prop['APK_OUT_PATH'] + "/apk/release")
+                   variant.getPackageApplicationProvider().get().outputScope.apkDatas.forEach { apkData ->
+//                       apkData.outputFileName =  new File(prop['APK_OUT_PATH'] + "/apk/release")+"${project.name}_v${defaultConfig.versionName}_${versionTime()}_${variant.productFlavors[0].name}.apk"
+                       def fileName = "${project.name}_v${defaultConfig.versionName}_${versionTime()}_${variant.productFlavors[0].name}.apk"
+                       apkData.outputFileName =  fileName
+                   }
+                    /*variant.outputs.each { output ->
                         //==================================================================================
                         //apk的输出路径  也可以注释掉这段  会默认输出路径
-                        variant.getPackageApplication().outputDirectory = new File(prop['APK_OUT_PATH'] + "/apk/release")
+                        variant.getPackageApplicationProvider().outputDirectory = new File(prop['APK_OUT_PATH'] + "/apk/release")
                         //==================================================================================
                         def outputFile = output.outputFile
                         if (outputFile != null && outputFile.name.endsWith('.apk')) {
@@ -71,13 +77,17 @@ android {
                             def fileName = "${project.name}_v${defaultConfig.versionName}_${versionTime()}_${variant.productFlavors[0].name}.apk"
                             outputFileName = fileName
                         }
-                    }
+                    }*/
                 }
             }
         }
     }
 
+    flavorDimensions "type" //这个是必须的
     productFlavors {
+        apk{
+            dimension "type" //并且必须使用这个dimension
+        }
         wandoujia {}
         baidu {}
         c360 {}
@@ -139,5 +149,5 @@ dependencies {
 
 
 
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compileOnly 'org.glassfish:javax.annotation:10.0-b28'
 }
