@@ -7,5 +7,10 @@ package com.lucidastar.mysmallcircle.mvp;
  */
 
 public interface IPresent{
+    /**
+     * 做一些初始化操作
+     */
+    void onStart();
 
+    void onDestroy();
 }

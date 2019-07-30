@@ -7,12 +7,14 @@ import com.uber.autodispose.AutoDisposeConverter;
  */
 
 public interface IView {
-    /**
-     * 绑定Android生命周期 防止RxJava内存泄漏
-     *
-     * @param <T>
-     * @return
-     */
-    <T> AutoDisposeConverter<T> bindAutoDispose();
 
+    /**
+     * 显示 loading
+     */
+    void showLoading();
+
+    /**
+     * 隐藏 loading
+     */
+    void hideLoading();
 }

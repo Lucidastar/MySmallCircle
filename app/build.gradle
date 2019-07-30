@@ -56,29 +56,15 @@ android {
                 shrinkResources true
                 proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
-//                signingConfig signingConfigs.release
+                signingConfig signingConfigs.release
 
-               applicationVariants.all { variant ->
+               /*applicationVariants.all { variant ->
                    variant.getPackageApplicationProvider().get().outputDirectory = new File(prop['APK_OUT_PATH'] + "/apk/release")
                    variant.getPackageApplicationProvider().get().outputScope.apkDatas.forEach { apkData ->
-//                       apkData.outputFileName =  new File(prop['APK_OUT_PATH'] + "/apk/release")+"${project.name}_v${defaultConfig.versionName}_${versionTime()}_${variant.productFlavors[0].name}.apk"
                        def fileName = "${project.name}_v${defaultConfig.versionName}_${versionTime()}_${variant.productFlavors[0].name}.apk"
                        apkData.outputFileName =  fileName
                    }
-                    /*variant.outputs.each { output ->
-                        //==================================================================================
-                        //apk的输出路径  也可以注释掉这段  会默认输出路径
-                        variant.getPackageApplicationProvider().outputDirectory = new File(prop['APK_OUT_PATH'] + "/apk/release")
-                        //==================================================================================
-                        def outputFile = output.outputFile
-                        if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                            // 输出apk名称为com_biniusports_app_bnsports_v1.0.0_20171205_baidu.apk
-                            //工程的名称  版本名 时间  平台名称
-                            def fileName = "${project.name}_v${defaultConfig.versionName}_${versionTime()}_${variant.productFlavors[0].name}.apk"
-                            outputFileName = fileName
-                        }
-                    }*/
-                }
+                }*/
             }
         }
     }

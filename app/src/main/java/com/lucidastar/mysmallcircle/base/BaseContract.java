@@ -1,5 +1,7 @@
 package com.lucidastar.mysmallcircle.base;
 
+import com.lucidastar.mysmallcircle.mvp.IPresent;
+import com.lucidastar.mysmallcircle.mvp.IView;
 import com.uber.autodispose.AutoDisposeConverter;
 
 /**
@@ -8,7 +10,7 @@ import com.uber.autodispose.AutoDisposeConverter;
 
 public interface BaseContract {
 
-    interface IBaseView<T> {
+    interface IBaseView<T> extends IView {
         /**
          * 显示加载
          */
@@ -33,16 +35,7 @@ public interface BaseContract {
     }
 
 
-    interface IBasePresenter<V extends IBaseView> {
-        /**
-         * @param view 绑定
-         */
-        void attachView(V view);
-
-        /**
-         * 防止内存的泄漏,清楚presenter与activity之间的绑定
-         */
-        void detachView();
+    interface IBasePresenter extends IPresent {
 
     }
 
