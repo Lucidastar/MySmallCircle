@@ -1,10 +1,7 @@
 package com.lucidastar.mysmallcircle.contract;
 
-import com.lucidastar.mysmallcircle.base.BaseContract;
-import com.lucidastar.mysmallcircle.model.LoginModel;
-
-import io.reactivex.Flowable;
-import retrofit2.http.Field;
+import com.lucidastar.mysmallcircle.base.BasePresenter;
+import com.lucidastar.mysmallcircle.base.BaseView;
 
 /**
  * Created by qiuyouzone on 2019/1/16.
@@ -12,7 +9,7 @@ import retrofit2.http.Field;
 
 public interface LoginContract {
 
-        interface LoginView extends BaseContract.IBaseView<LoginPresenter> {
+    interface LoginView extends BaseView<LoginPresenter> {
         String getUserName();
 
         String getPwd();
@@ -22,9 +19,8 @@ public interface LoginContract {
         void loginFail(String failMsg);
     }
 
-    interface LoginPresenter<V extends LoginView> extends BaseContract.IBasePresenter {
+    interface LoginPresenter extends BasePresenter {
         void login(String name, String pwd);
 
-        void login1(String name, String pwd);
     }
 }

@@ -1,6 +1,8 @@
 package com.lucidastar.mysmallcircle.net.service;
 
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.Observer;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -13,6 +15,6 @@ public interface APIService {
 
     @FormUrlEncoded
     @POST("user/login")
-    Flowable<String> login(@Field("username") String username,
+    Observable<String> login(@Field("username") String username,
                            @Field("password") String password) ;
 }

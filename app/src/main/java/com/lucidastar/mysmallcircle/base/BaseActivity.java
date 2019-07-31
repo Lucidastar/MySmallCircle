@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.lucidastar.mysmallcircle.mvp.IPresent;
 import com.uber.autodispose.AutoDispose;
 import com.uber.autodispose.AutoDisposeConverter;
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
@@ -21,7 +22,7 @@ import javax.inject.Inject;
  * Created by qiuyouzone on 2018/9/25.
  */
 
-public abstract class BaseActivity<T extends BaseContract.IBasePresenter> extends AppCompatActivity implements View.OnClickListener, BaseContract.IBaseView {
+public abstract class BaseActivity<T extends IPresent> extends AppCompatActivity{
     /**
      * 将代理类通用行为抽出来
      */
@@ -37,10 +38,10 @@ public abstract class BaseActivity<T extends BaseContract.IBasePresenter> extend
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initTheme();
-        setContentView(mContentViewId);
-        initToolbar();
-        initView();
+//        initTheme();
+//        setContentView(mContentViewId);
+//        initToolbar();
+//        initView();
     }
 
     @Override
@@ -72,17 +73,4 @@ public abstract class BaseActivity<T extends BaseContract.IBasePresenter> extend
     protected abstract void initView();
 
 
-    @Override
-    public AutoDisposeConverter<T> bindAutoDispose() {
-        return AutoDispose.autoDisposable(AndroidLifecycleScopeProvider
-                .from((LifecycleOwner) this, Lifecycle.Event.ON_DESTROY));
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (mPresenter != null) {
-            mPresenter.detachView();
-        }
-        super.onDestroy();
-    }
 }

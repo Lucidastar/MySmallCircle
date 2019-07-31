@@ -14,21 +14,13 @@ import retrofit2.http.Field;
 public class LoginModel implements IModel {
 
     public boolean login(String username, String pwd) {
-        boolean isLogin = false;
-        if ("gs".equals(username) && "123".equals(pwd)) {
-            isLogin = true;
-        } else {
-            isLogin = false;
-        }
-        return isLogin;
+
+        return true;
     }
+
 
     @Override
-    public void destroy() {
+    public void onDestroy() {
 
-    }
-
-    public Flowable<String> login1( String username,String password){
-        return RetrofitManager.create(APIService.class).login(username,password);
     }
 }
