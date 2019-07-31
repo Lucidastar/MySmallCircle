@@ -14,3 +14,5 @@ https://www.jianshu.com/p/14ff79e9b4c0
 https://github.com/twangithub/TwanBase/tree/master/app/src/main/java/com/twan/base
 https://github.com/RookieExaminer/MvpDemo/blob/master/app/src/main/java/com/example/azheng/rxjavamvpdemo/base/BasePresenter.java
 https://github.com/MirkoWu/BaseLibrary
+
+目前简单实现了mvp的架构，通过官方例子
