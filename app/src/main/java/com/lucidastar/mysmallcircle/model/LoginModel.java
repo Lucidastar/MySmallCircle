@@ -1,26 +1,47 @@
 package com.lucidastar.mysmallcircle.model;
 
+import com.lucidastar.mysmallcircle.base.BaseModel;
+import com.lucidastar.mysmallcircle.contract.LoginContract;
+import com.lucidastar.mysmallcircle.intergration.IRepositoryManager;
 import com.lucidastar.mysmallcircle.mvp.IModel;
 import com.lucidastar.mysmallcircle.net.RetrofitManager;
 import com.lucidastar.mysmallcircle.net.service.APIService;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
 import retrofit2.http.Field;
 
 /**
  * Created by qiuyouzone on 2019/1/16.
  */
 
-public class LoginModel implements IModel {
+//这个是具体的实现
+public class LoginModel extends BaseModel implements LoginContract.Model {
 
-    public boolean login(String username, String pwd) {
-
-        return true;
+    public LoginModel() {
     }
-
 
     @Override
     public void onDestroy() {
 
+    }
+
+    @Override
+    public Observable<String> getUsers(int lastIdQueried, boolean update) {
+        return null;
+    }
+
+    @Override
+    public boolean login(String name, String pwd) {
+        try {
+            Thread.sleep(3000);
+            return true;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

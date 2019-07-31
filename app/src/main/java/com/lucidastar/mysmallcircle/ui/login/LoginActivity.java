@@ -7,16 +7,24 @@ import com.lucidastar.mysmallcircle.R;
 import com.lucidastar.mysmallcircle.base.BaseActivity;
 import com.lucidastar.mysmallcircle.contract.LoginContract;
 import com.lucidastar.mysmallcircle.presenter.LoginPresenter;
+import com.lucidastar.mysmallcircle.model.LoginModel;
 import com.mine.lucidastarutils.utils.ToastUtils;
 
-public class LoginActivity extends BaseActivity implements LoginContract.LoginView{
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.LoginView{
 
-    LoginContract.LoginPresenter mLoginPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-        mLoginPresenter = new LoginPresenter(this);
+    }
+
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    protected int initView(Bundle savedInstanceState) {
+        return R.layout.activity_login;
     }
 
     @Override
@@ -26,7 +34,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
 
     public void openLogin(View view) {
-        mLoginPresenter.login("","");
+        mPresenter.login();
     }
 
     @Override
@@ -49,10 +57,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
 
     }
 
-    @Override
-    public void setPresenter(LoginContract.LoginPresenter presenter) {
-
-    }
 
     @Override
     public void showLoading() {
@@ -67,6 +71,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.LoginVi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mLoginPresenter.unsubscribe();
     }
+
+    @Override
+    protected LoginPresenter createPresenter() {
+        return new LoginPresenter(new LoginModel(),this);
+    }
+
+
 }

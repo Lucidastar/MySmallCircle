@@ -97,43 +97,74 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation rootProject.ext.dependencies["support-appcompatV7"]
+    implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
 
-    implementation rootProject.ext.dependencies["rxJaveVersion"]
-    implementation rootProject.ext.dependencies["rxAndroidVersion"]
-    implementation rootProject.ext.dependencies["retrofit2"]
-
-    implementation rootProject.ext.dependencies["guava"]
-
-//    implementation rootProject.ext.dependencies["lifecycle_runtime"]
-//    annotationProcessor rootProject.ext.dependencies["lifecycle_compiler"]
-    // 如果用的是java8使用以下的依赖
-//    implementation rootProject.ext.dependencies["lifecycle_common_java8"]
 
 
-    androidTestImplementation rootProject.ext.dependencies["espressoVersion"]
+//    implementation rootProject.ext.dependencies["guava"]
+
+
+
+//    androidTestImplementation rootProject.ext.dependencies["espressoVersion"]
 
     implementation rootProject.ext.dependencies["umengAnalytics"]
     implementation rootProject.ext.dependencies["umengCommon"]
-    //dagger2
-    implementation rootProject.ext.dependencies["dagger2"]
-    annotationProcessor rootProject.ext.dependencies["dagger2_annotation"]
 
-    implementation rootProject.ext.dependencies["autodispose-android"]
-    implementation rootProject.ext.dependencies["autodispose-android-archcomponents"]
+    //rx
+    api rootProject.ext.dependencies["rxjava2"]
+    api(rootProject.ext.dependencies["rxandroid2"]) {
+        exclude module: 'rxjava'
+    }
+
+
+    api(rootProject.ext.dependencies["rxlifecycle2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'jsr305'
+    }
+    api(rootProject.ext.dependencies["rxlifecycle2-android"]) {
+        exclude module: 'support-annotations'
+        exclude module: 'rxjava'
+        exclude module: 'rxandroid'
+        exclude module: 'rxlifecycle'
+    }
+
+
+    //network
+    api(rootProject.ext.dependencies["retrofit"]) {
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+    }
+    implementation(rootProject.ext.dependencies["retrofit-converter-gson"]) {
+        exclude module: 'gson'
+        exclude module: 'okhttp'
+        exclude module: 'okio'
+        exclude module: 'retrofit'
+    }
+    implementation(rootProject.ext.dependencies["retrofit-adapter-rxjava2"]) {
+        exclude module: 'rxjava'
+        exclude module: 'okhttp'
+        exclude module: 'retrofit'
+        exclude module: 'okio'
+    }
+    api rootProject.ext.dependencies["okhttp3"]
+  /*  compileOnly rootProject.ext.dependencies["glide"]
+    annotationProcessor(rootProject.ext.dependencies["glide-compiler"]) {
+        exclude module: 'jsr305'
+    }*/
 
     implementation rootProject.ext.dependencies["externalLucidaUtils"]
     implementation rootProject.ext.dependencies["butterknife"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
 
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-//    implementation 'io.reactivex.rxjava2:rxjava:2.1.13'
+
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 
 
 
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
+
+
+    implementation 'com.trello:rxlifecycle-components:1.0'
 }

@@ -1,6 +1,5 @@
 package com.lucidastar.mysmallcircle.mvp;
 
-import com.uber.autodispose.AutoDisposeConverter;
 
 /**
  * Created by qiuyouzone on 2019/1/16.
