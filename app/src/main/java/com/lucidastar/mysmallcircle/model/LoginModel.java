@@ -1,11 +1,15 @@
 package com.lucidastar.mysmallcircle.model;
 
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.OnLifecycleEvent;
+
 import com.lucidastar.mysmallcircle.base.BaseModel;
 import com.lucidastar.mysmallcircle.contract.LoginContract;
 import com.lucidastar.mysmallcircle.intergration.IRepositoryManager;
 import com.lucidastar.mysmallcircle.mvp.IModel;
 import com.lucidastar.mysmallcircle.net.RetrofitManager;
 import com.lucidastar.mysmallcircle.net.service.APIService;
+import com.mine.lucidastarutils.log.KLog;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,13 +29,8 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
     }
 
     @Override
-    public void onDestroy() {
-
-    }
-
-    @Override
     public Observable<String> getUsers(int lastIdQueried, boolean update) {
-        return null;
+        return Observable.just("success");
     }
 
     @Override
@@ -43,5 +42,10 @@ public class LoginModel extends BaseModel implements LoginContract.Model {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    void onPause() {
+        KLog.i("onPause");
     }
 }
